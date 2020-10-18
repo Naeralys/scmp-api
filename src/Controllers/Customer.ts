@@ -10,10 +10,13 @@ router.get('/getCustomers', (req: any, res: any) => {
 })
 
 router.get('/getCustomer?:id', (req: any, res: any) => {
-  const customerId: string = req.params.id
+  const customerId: string = req.query.id
   CustomerService.getById(customerId)
     .then(customer => res.status(200).send(customer))
-    .catch(error => res.send(400).send(error))
+    .catch(error => {
+      console.error(error)
+      res.send(400).send(error)
+    })
 })
 
 export default router
