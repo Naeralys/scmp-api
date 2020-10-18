@@ -1,3 +1,4 @@
 export interface IDatabase {
-  collection: any
+  runQuery: any
+  createQuery: any
 }

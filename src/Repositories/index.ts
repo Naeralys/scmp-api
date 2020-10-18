@@ -1,9 +1,6 @@
-const admin = require('firebase-admin')
-admin.initializeApp({
-  credential: admin.credential.applicationDefault()
-})
-const db = admin.firestore()
+const { Datastore } = require('@google-cloud/datastore')
+
+const datastore = new Datastore()
 
 import { CustomerRepo } from './Customer'
-
-export const customerRepo = new CustomerRepo(db)
+export const customerRepo = new CustomerRepo(datastore)
