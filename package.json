@@ -1,0 +1,19 @@
+{
+    "name": "scmp-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "npm i && tsc",
+        "start": "tsc && node dist/index.js",
+        "test": "jest"
+    },
+    "devDependencies": {
+        "jest": "^25.5.4",
+        "tslint": "^5.12.1",
+        "typescript": "^3.3.3"
+    },
+    "dependencies": {
+        "@types/jest": "^24.9.1"
+    }
+}
