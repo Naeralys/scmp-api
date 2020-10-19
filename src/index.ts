@@ -16,8 +16,7 @@ import CustomerController from './Controllers/Customer'
 app.use('/customer', CustomerController)
 
 app.get('/', (req: any, res: any) => {
-  console.log('SCMP api endpoint')
-  res.status(200).send('SCMP api endpoint')
+  res.status(200).send('SCMP api endpoint.')
 })
 
 app.listen(PORT, () => {
