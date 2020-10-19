@@ -11,36 +11,28 @@ export class CustomerRepo implements ICustomerRepo {
 
   public getAll = () =>
     this.db
-      .runQuery(this.db.createQuery('customers'))
+      .collection('customers')
+      .get()
       .then(this.convertDataArrayToCustomers)
-  public getById = (id: string) => {
-    const query = this.db.createQuery('customers')
-    const filter = query.filter('name', id)
-    return this.db
-      .runQuery(filter)
-      .then(data => {
-        console.log(data)
-        return data
-      })
-      .catch(error => {
-        console.error(error)
-        return error
-      })
-    //.then(data => this.convertDataToCustomer(data))
-  }
+  public getById = (id: string) =>
+    this.db
+      .collection('customers')
+      .doc(id)
+      .get(id)
+      .then(this.convertDataToCustomer)
 
-  private convertDataArrayToCustomers = (data: [][]) =>
-    data[0].map(this.convertDataToCustomer)
+  private convertDataArrayToCustomers = (data: any) =>
+    data.docs.map(this.convertDataToCustomer)
 
   private convertDataToCustomer = (data: any) => {
-    console.log('CONVERT DATA')
-    console.log(data)
-    return {
-      id: data.id,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      phone: data.phone,
-      email: data.email
-    } as Customer
+    if (data && data.data())
+      return {
+        id: data.id,
+        firstName: data.data().firstName,
+        lastName: data.data().lastName,
+        phone: data.data().phone,
+        email: data.data().email
+      } as Customer
+    else return null
   }
 }
