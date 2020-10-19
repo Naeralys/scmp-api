@@ -7,7 +7,7 @@ interface ICustomerService {
   getById: (id: string) => Promise<Customer>
 }
 
-class CustomerService implements ICustomerService {
+export class CustomerService implements ICustomerService {
   constructor (private customerRepo: ICustomerRepo) {}
 
   public getAll = (): Promise<Customer[]> => this.customerRepo.getAll()
