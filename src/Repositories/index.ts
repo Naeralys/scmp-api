@@ -1,6 +1,5 @@
-const { Datastore } = require('@google-cloud/datastore')
-
-const datastore = new Datastore()
+const { Firestore } = require('@google-cloud/firestore')
+const firestore = new Firestore()
 
 import { CustomerRepo } from './Customer'
-export const customerRepo = new CustomerRepo(datastore)
+export const customerRepo = new CustomerRepo(firestore)
